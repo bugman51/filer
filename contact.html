@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us - WiXnation Unlimited Football Scraper</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     .hero-contact {
       background: url('assets/ball.jpg') no-repeat center center;
@@ -38,7 +39,7 @@
       <a class="navbar-brand" href="index.html">
         <img src="assets/wix.png" alt="Wix Logo" width="100" height="50">
       </a>
-      <button class="btn btn-outline-light" onclick="history.back()">← Back</button>
+      <button class="btn btn-outline-light" onclick="history.back()">â Back</button>
     </div>
   </nav>
 
@@ -56,7 +57,7 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <h2 class="text-center mb-4">Send Us a Message</h2>
-        <form action="https://your-worker-name.subdomain.workers.dev" method="POST">
+        <form action="https://wixnation.henrygreen311.workers.dev/" method="POST" id="contactForm">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName" class="form-label">First Name</label>
@@ -86,14 +87,17 @@
           <!-- Optional honeypot for spam prevention -->
           <input type="text" name="_gotcha" style="display:none">
 
+          <!-- reCAPTCHA -->
+          <div class="g-recaptcha mb-3" data-sitekey="6LeUP9MqAAAAAIKxybxWGOKYxL7_uJ-dz3cq2mo9"></div>
+
           <div class="d-grid mt-4">
-            <button type="submit" class="btn btn-primary">Send Message</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Send Message</button>
           </div>
         </form>
 
         <div class="mt-5 text-center">
           <p class="mb-1">Prefer direct email?</p>
-          <a href="mailto:admin@gmail.com" class="btn btn-outline-dark">Email: admin@gmail.com</a>
+          <a href="mailto:admin@wixnation.com" class="btn btn-outline-dark">Email: admin@wixnation.com</a>
         </div>
       </div>
     </div>
@@ -121,6 +125,12 @@
 <script>
   AOS.init({ duration: 1000, once: true });
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  document.getElementById("contactForm").addEventListener("submit", function() {
+    const btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    btn.innerText = "Sending...";
+  });
 </script>
 
 </body>
